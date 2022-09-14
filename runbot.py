@@ -27,6 +27,8 @@ def check_prime(query):
             title = first_item.find("span", class_="a-text-normal").text
             price = first_item.find_all(
                 "div", class_=["a-row", "a-size-base", "a-color-secondary"])[-1]
+            href = first_item.find("a").get('href')
+            link = "https://www.amazon.co.jp/" + href
             if price is None:
                 price = "無料じゃないよ！"
             else:
@@ -41,9 +43,9 @@ def check_prime(query):
                     else:
                         price = price[-1].text
 
-            return title, price
+            return title, price, link
     except Exception:
-        return None, None
+        return None, None, None
 
 
 intents = discord.Intents.default()
@@ -61,12 +63,12 @@ async def on_ready():
 
 @slash_client.slash(name="prime", description="prime video に無料であるかな～？")
 async def prime(ctx: SlashContext, query: str):
-    title, price = check_prime(query)
+    title, price, link = check_prime(query)
     if title is None:
         await ctx.send(content="ﾅﾝｶｼｯﾊﾟｲｼﾀ!( ﾟДﾟ)ﾉ⌒")
         return
 
-    await ctx.send(content=f"ｺﾚｶ?( ﾟДﾟ)ﾉ⌒ | {title} {price} |")
+    await ctx.send(content=f"ｺﾚｶ?( ﾟДﾟ)ﾉ⌒ | [{title}]({link}) {price} |")
 
 
 if __name__ == "__main__":
