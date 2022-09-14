@@ -68,7 +68,7 @@ async def prime(ctx: SlashContext, query: str):
         await ctx.send(content="ﾅﾝｶｼｯﾊﾟｲｼﾀ!( ﾟДﾟ)ﾉ⌒")
         return
 
-    await ctx.send(content=f"ｺﾚｶ?( ﾟДﾟ)ﾉ⌒ | [{title}]({link}) {price} |")
+    await ctx.send(content=f"”{query}”ｯﾃｺﾚｶ?( ﾟДﾟ)ﾉ⌒ | [{title}]({link}) {price} |")
 
 
 if __name__ == "__main__":
