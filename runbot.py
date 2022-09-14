@@ -31,7 +31,7 @@ def check_prime(query):
                 price = "無料じゃないよ！"
             else:
                 price = price.text.split('、')[-1]
-                if "プライム会員は" not in price:
+                if "￥0" not in price:
                     price = first_item.find_all(
                         "span", class_=["a-size-mini",
                                         "s-play-button-text",
